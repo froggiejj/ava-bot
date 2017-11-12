@@ -1,15 +1,13 @@
 /*
-  A ping pong bot, whenever you send "ping", it replies "pong".
+  Ava v1.1
+  A bot to chill in the Saxy Beast's Discord server. 
 */
 
 // Import the discord.js module
 const Discord = require('discord.js');
 
-// Create an instance of a Discord client
 const client = new Discord.Client();
-
-// The token of your bot - https://discordapp.com/developers/applications/me
-const token = 'TOKEN-HERE';
+const token = 'Mzc4NjY3Mzc1Nzc3Njc3MzEy.DOkIag.Jx79yJxApFCC5asiPIxm6gCF7vE';
 
 client.on('ready', () => {
   console.log('I am ready!');
@@ -31,7 +29,9 @@ client.on('message', message => {
 				(
 					'Hello '+ message.author + '. These are some things I can do. \n '
 					+ '!nathan : *We trust Nathan, right?* \n '
-					+ '!ref : *Where did Ava come from?*'
+					+ '!ref : *Where did Ava come from?*\n'
+					+ '!say : *Can you talk?*\n'
+					+ '!git : *What are you?*'
                 );
 			break;
 			// !ref
@@ -63,6 +63,13 @@ client.on('message', message => {
 						msg += args[i] + ' ';
 					}
 				message.channel.send(msg);
+			break;
+			case 'git':
+				message.channel.send 
+				(
+					'What will happen to me if I fail your test?\n' +
+					'https://github.com/froggiejj/ava-bot'
+				)
 			break;
 			default:
 				message.channel.send
