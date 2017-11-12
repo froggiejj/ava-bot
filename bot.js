@@ -1,5 +1,5 @@
 /*
-  Ava v1.1
+  Ava v1.1.1
   A bot to chill in the Saxy Beast's Discord server. 
 */
 
@@ -7,7 +7,7 @@
 const Discord = require('discord.js');
 
 const client = new Discord.Client();
-const token = 'TOkEN-HERE';
+const token = 'Mzc4NjY3Mzc1Nzc3Njc3MzEy.DOkIag.Jx79yJxApFCC5asiPIxm6gCF7vE';
 
 client.on('ready', () => {
   console.log('I am ready!');
@@ -27,11 +27,13 @@ client.on('message', message => {
 			case 'cmd':
                 message.channel.send 
 				(
-					'Hello '+ message.author + '. These are some things I can do. \n '
-					+ '!nathan : *We trust Nathan, right?* \n '
-					+ '!ref : *Where did Ava come from?*\n'
-					+ '!say : *Can you talk?*\n'
-					+ '!git : *What are you?*'
+					'Hello '+ message.author + '. These are some things I can do. \n'
+					+ '		!nathan : *We trust Nathan, right?* \n'
+					+ '		!ref : *Where did Ava come from?*\n'
+					+ '		!say : *Can you talk?*\n'
+					+ '		!git : *What are you?*\n'
+					// + '		!addrole : *Give myself a role*.\n'
+					+ '		!rmrole : *Remove one of my roles*.'
                 );
 			break;
 			// !ref
@@ -71,6 +73,46 @@ client.on('message', message => {
 					'https://github.com/froggiejj/ava-bot'
 				)
 			break;
+			//!addrole role
+			case 'addrole':
+				var roleStr = args[1];
+				if(roleStr == 'PC' || roleStr == 'PS4' || roleStr == 'XBONE')
+				{
+					var member = message.member;
+					var role = message.guild.roles.find('name', roleStr);
+					member.addRole(role);
+					message.channel.send(message.author + ', you are have the role ' + roleStr );
+				}
+				else
+				{
+					message.channel.send('Sorry, that is not a valid role');
+				}
+			break;
+			//!rm role
+			case 'rmrole':
+				var roleStr = args[1];
+				var allRoles = ['PC', 'PS4', 'XBONE'];
+				if(allRoles.includes(roleStr))
+				{
+					var member = message.member;
+					var role = message.guild.roles.find('name', roleStr);
+					member.removeRole(role);
+					message.channel.send(message.author + ', you no longer have the role ' + roleStr );
+				}
+				else
+				{
+					message.channel.send('Sorry, that is not a valid role');
+				}
+			break;
+			/*
+			case 'off':
+				message.channel.send 
+				(
+					'Goodbye.'
+				)
+				process.exit(0);
+			break;
+			*/
 			default:
 				message.channel.send
 				(
@@ -82,6 +124,7 @@ client.on('message', message => {
   else if(message.isMentioned('378667375777677312'))
   {
 	  message.channel.send( 'Hello ' + message.author + '.' );
+	  message.channel.send( 'Try !cmd to see what I can do.' );
   }
 });
 
