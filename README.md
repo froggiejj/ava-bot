@@ -10,5 +10,4 @@ The `bot.js` file is the main code for the bot, it logs the bot in, and checks f
 You can run the bot either with the `startBot.bat` file or with the command `node bot.js`. The `.bat` file just contains that command. 
 
 Have fun messing with the bot!
-
 --Jakob
