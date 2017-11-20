@@ -1,5 +1,5 @@
 /*
-  Ava v1.1.3
+  Ava v1.1.4
   A bot to chill in the Saxy Beast's Discord server. 
   Built with discord.js
 */
@@ -30,17 +30,17 @@ client.on('message', message => {
   {
 	//split rest of the message up
 	var args = message.toString().substring(1).split(' ');
-  var cmd = args[0];	// args[1:n] stores the arguments for the commands
+  	var cmd = args[0];	// args[1:n] stores the arguments for the commands
     switch(cmd) {
-			// !nathan
+			//!nathan
 			//TEST COMMAND, NOT FOR GENERAL USE
-      			//Responds with a quote from the movie, useful to see if the bot is alive.
-      			case 'nathan':
-        			message.channel.send
+			//Responds with a quote from the movie, useful to see if the bot is alive.
+			case 'nathan':
+			message.channel.send
 				(
-          				'Nathan is not your friend. You can\'t trust anything he says.'
-        			);
-      			break;
+					'Nathan isn\'t your friend. You shouldn\'t trust anything he says.'
+				);
+			break;
 			//!hello 
 			//TEST COMMAND, NOT FOR GENERAL USE
 			//Respond with Hello, mentioning the user. Test for mentions
@@ -56,13 +56,13 @@ client.on('message', message => {
 			case 'emoji':
 				message.channel.send
 				(
-					':heart_eyes:'
+					':LUL:'
 				);
 			break;
 			// !cmd
 			//Lists the available commands.
 			case 'cmd':
-                		message.channel.send 
+                message.channel.send 
 				(
 					`Hello ${message.author}. These are some things I can do. \n`
 					+ '		!ref : *Where did Ava come from?*\n'
@@ -70,7 +70,7 @@ client.on('message', message => {
 					+ '		!github : *What are you?*\n'
 					+ '		!addrole role : *Give myself a role (PC, PS, XBOX)*.\n'
 					+ '		!rmrole role : *Remove one of my roles (PC, PS, XBOX)*.'
-                		);
+        );
 			break;
 			// !ref
 			//Gives a link to Ex Machina on Amazon, use if someone doesn't know where the name comes from.
@@ -94,7 +94,7 @@ client.on('message', message => {
 				}
 				else
 				{
-					message.channel.send('You need to tell me what to say.');
+					message.channel.send('You need to tell me what I should say.');
 				}
 			break;
 			//!github
@@ -167,10 +167,10 @@ client.on('message', message => {
 			default:
 				message.channel.send
 				(
-					'That is not a command I am familiar with.'
+					'That isn\'t a command I am familiar with.'
 				);
 			break;
-         }
+      }
   }
   else if(message.isMentioned(auth.myID))
   {
