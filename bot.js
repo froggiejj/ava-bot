@@ -111,7 +111,7 @@ function dance(msg)
 		.then(connection => {
 			msg.channel.send('I\'m gonna tear up the fuckin\' dance floor');
 			
-			dispatcher = connection.playFile('<filePath>');
+			dispatcher = connection.playFile('./GetDownSaturdayNight.mp3');
 			
 			dispatcher.on('end', () => {
 			connection.disconnect();
