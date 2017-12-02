@@ -6,13 +6,13 @@
 
 /*
   TODO: Build web scraper to get the week's games from overwatchleague.com
-        It should be a function that grabs the games' info and display it in the chat
+        It should be group of functions that grabs the games' info and displays it in the chat
         We don't want to store it locally because we want to make it update as soon as the site updates
             Need to figure out how to treat TBA games.
 */
 
 // Import the discord.js module
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 const auth = require("./auth.json");
 var scraper = require("./scraper.js")
 
@@ -167,12 +167,16 @@ client.on('message', message => {
 		case 'nathan':
 		message.channel.send('Nathan isn\'t your friend. You shouldn\'t trust anything he says.');
 		break;
-		
+
 		//!fuel
 		//TEST COMMAND
 		//get the simple function from another file.
 		case'fuel':
 		scraper.fuel(message);
+		break;
+
+    case'owl':
+		scraper.owl(message);
 		break;
 
 		//!hello
@@ -204,19 +208,19 @@ client.on('message', message => {
 				+ '		!dance : *You wouldn\'t be wasting your time if you were dancing with her* (!end to end)'
 			);
 		break;
-		
+
 		// !ref
 		//Gives a link to Ex Machina on Amazon, use if someone doesn't know where the name comes from.
 		case 'ref':
 			message.channel.send('If you don\'t understand where my name comes from, check out *Ex Machina*: http://a.co/9KS3vWM');
 		break;
-		
+
 		//!say (some stuff)
 		//Make Ava repeat whatever is in the (some stuff) args.
 		case 'say':
 			say(message, args);
 		break;
-		
+
 		//!github
 		//Post a link to the github page for the bot.
 		case 'github':
@@ -227,19 +231,19 @@ client.on('message', message => {
 				'https://github.com/froggiejj/ava-bot'
 			);
 		break;
-		
+
 		//!addrole role
 		//Add a role to a member.
 		case 'addrole':
 			addRole(message, args);
 		break;
-		
+
 		//!rm role
 		//Remove a role from a member.
 		case 'rmrole':
 			rmRole(message, args);
 		break;
-		
+
 		//!dance
 		//Play a song in a voice chat channel.
 		case 'dance':
@@ -254,7 +258,7 @@ client.on('message', message => {
 				dispatcher = null;
 			}
 		break;
-		
+
 		//!game (game)
 		//Set Ava's active game
 		case 'game':
@@ -267,7 +271,7 @@ client.on('message', message => {
 				client.user.setGame(null);
 			}
 		break;
-		
+
 		/*
 		case 'off':
 			message.channel.send
@@ -277,7 +281,7 @@ client.on('message', message => {
 		process.exit(0);
 		break;
 		*/
-		
+
 		//if we couldn't find the command:
 		default:
 			message.channel.send
