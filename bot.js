@@ -1,5 +1,5 @@
 /*
-  Ava v1.1.3
+  Ava v1.2.1
   A bot to chill in the Saxy Beast's Discord server.
   Built with discord.js
 */
