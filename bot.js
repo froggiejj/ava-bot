@@ -1,5 +1,5 @@
 /*
-  Ava v1.2.1
+  Ava v1.2.2
   A bot to chill in the Saxy Beast's Discord server.
   Built with discord.js
 */
@@ -12,9 +12,9 @@
 */
 
 // Import the discord.js module
-const Discord = require("discord.js");
+const Discord = require('discord.js');
 const auth = require("./auth.json");
-var scraper = require("./scraper.js")
+var owlScraper = require("./owlScraper.js")
 
 const client = new Discord.Client();
 if(auth.token == "YOUR-TOKEN-HERE")
@@ -25,7 +25,7 @@ if(auth.token == "YOUR-TOKEN-HERE")
 const token = auth.token;
 
 client.on('ready', () => {
-  console.log('Hello.');
+  console.log("Hello.");
 });
 
 // Declare functions to run on commands
@@ -35,7 +35,7 @@ function sendEmoji(msg, args)
 	{
 		try
 		{
-			const myEmoji = client.emojis.find("name", args[1]);
+			const myEmoji = client.emojis.find('name', args[1]);
 			msg.channel.send(myEmoji.toString());
 		}
 		catch(err)
@@ -45,7 +45,7 @@ function sendEmoji(msg, args)
 	}
 	else
 	{
-		const myEmoji = client.emojis.find("name", "LUL");
+		const myEmoji = client.emojis.find('name', 'LUL');
 		msg.channel.send(myEmoji.toString());
 	}
 }
@@ -69,7 +69,7 @@ function say(msg, args)
 	}
 	else
 	{
-		msg.channel.send('You need to tell me what I should say.');
+		msg.channel.send("You need to tell me what I should say.");
 	}
 }
 
@@ -88,12 +88,12 @@ function addRole(msg, args)
 		}
 		else
 		{
-			msg.channel.send('Sorry, that is not a valid role.');
+			msg.channel.send("Sorry, that is not a valid role.");
 		}
 	}
 	else
 	{
-		msg.channel.send('You need to specify a role to add; try PC, PS, or XBOX.');
+		msg.channel.send("You need to specify a role to add; try PC, PS, or XBOX.");
 	}
 }
 
@@ -172,11 +172,11 @@ client.on('message', message => {
 		//TEST COMMAND
 		//get the simple function from another file.
 		case'fuel':
-		scraper.fuel(message);
+		owlScraper.fuel(message);
 		break;
 
     case'owl':
-		scraper.owl(message);
+		owlScraper.owl(message);
 		break;
 
 		//!hello
@@ -205,7 +205,7 @@ client.on('message', message => {
 				+ '		!github : *What are you?*\n'
 				+ '		!addrole role : *Give myself a role (PC, PS, XBOX)*.\n'
 				+ '		!rmrole role : *Remove one of my roles (PC, PS, XBOX)*.\n'
-				+ '		!dance : *You wouldn\'t be wasting your time if you were dancing with her* (!end to end)'
+				+ '		!dance : *You wouldn\'t be wasting your time if you were dancing with her* (!stop to end)'
 			);
 		break;
 
@@ -272,7 +272,9 @@ client.on('message', message => {
 			}
 		break;
 
-		/*
+    /*
+    //!off
+    //Turn the bot off.
 		case 'off':
 			message.channel.send
 			(
@@ -280,7 +282,7 @@ client.on('message', message => {
 			)
 		process.exit(0);
 		break;
-		*/
+    */
 
 		//if we couldn't find the command:
 		default:
