@@ -1,0 +1,12 @@
+{
+  "name": "ava-bot",
+  "version": "1.2.2",
+  "description": "A bot to hang out with the Saxy Beasts",
+  "main": "bot.js",
+  "author": "Froggiejj",
+  "dependencies": {
+    "discord.js": "latest",
+    "ffmpeg-binaries": "latest",
+    "opusscript": "latest"
+  }
+}
