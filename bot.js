@@ -19,13 +19,13 @@ var owlScraper = require("./owlScraper.js")
 const client = new Discord.Client();
 if(auth.token == "YOUR-TOKEN-HERE")
 {
-  console.log("You need to enter the bot's access token in auth.json.");
-  process.exit(1);
+	console.log("You need to enter the bot's access token in auth.json.");
+  	process.exit(1);
 }
 const token = auth.token;
 
 client.on('ready', () => {
-  console.log("Hello.");
+  	console.log("Hello.");
 });
 
 // Declare functions to run on commands
