@@ -1,9 +1,9 @@
 # ava-bot
 A Discord bot to chill in the Saxy Beast's server. Her name is Ava (after the AI in Ex Machina)
 
-Check out <https://discord.js.org> for more information about the [node.js](https://nodejs.org/en/) module I used to make the bot. You can install it with `npm install --save discord.js`
+Check out <https://discord.js.org> for more information about the [node.js](https://nodejs.org/en/) module I used to make the bot. 
 
-With v1.2.0, I added voice channel functionality. To use this, you will need some additional packages. ffmpeg (to play the files) can be installed with `npm install ffmpeg-binaries` and an opus encoder can be installed with either `npm install opusscript` or `npm install node-opus`.
+This bot uses some external packages. You can install these through the `packages.json` file by typing `npm install` in the bot directory.
 
 The `auth.json` file contains the access token for the bot as well as the bot's ID. Be careful with the bot's token and don't share it with anyone you don't trust (like the internet). You can find your bot's ID and access token [here](https://discordapp.com/developers/applications/me) 
 
