@@ -1,5 +1,5 @@
 /*
-  Ava v1.2.0
+  Ava v1.2.1
   A bot to chill in the Saxy Beast's Discord server. 
   Built with discord.js
 */
@@ -57,25 +57,33 @@ function say(msg, args)
 
 function addRole(msg, args)
 {
-	var roleStr = args[1];
-	if(roleStr)
+	var testRole = args[1];
+	if(testRole)
 	{
-	  var allRoles = ['PC', 'PS', 'XBOX'];
-		if(allRoles.includes(roleStr))
-		{
-			var member = msg.member;
-			var role = msg.guild.roles.find('name', roleStr);
-			member.addRole(role);
-			msg.channel.send(`${msg.author}, you now have the role ${roleStr}`);
-		}
-		else
-		{
-			msg.channel.send('Sorry, that is not a valid role.');
-		}
+    		for(var i = 1; i < args.length; i++)
+    		{
+      			roleStr = args[i]
+      			console.log(`${msg.author.username} requested the role "${roleStr}".`)
+	    		var allRoles = ['PC', 'PS', 'XBOX'];
+		  	if(allRoles.includes(roleStr))
+		  	{
+				var member = msg.member;
+			  	var role = msg.guild.roles.find('name', roleStr);
+			  	member.addRole(role);
+			  	msg.channel.send(`${msg.author}, you now have the role ${roleStr}.`);
+        			console.log(`${msg.author.username} was assigned the role "${roleStr}".`)
+		  	}
+  			else
+		  	{
+				msg.channel.send("Sorry, that is not a valid role.");
+        			console.log(`${msg.author.username} could not be assigned that role.`)
+		  	}
+    		}
 	}
 	else
 	{
-		msg.channel.send('You need to specify a role to add; try PC, PS, or XBOX.');
+		msg.channel.send("You need to specify a role to add; try PC, PS, or XBOX.");
+    		console.log(`${msg.author.username} attempted to request a role, but did not specify one.`)
 	}
 }
 
