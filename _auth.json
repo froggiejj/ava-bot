@@ -1,3 +1,4 @@
+// change to auth.json when you enter the keys.
 {
    "token": "YOUR-TOKEN-HERE",
    "myID": "YOUR-ID-HERE"
