@@ -13,8 +13,9 @@
 
 // Import the discord.js module
 const Discord = require('discord.js');
-const auth = require("./auth.json");
+const auth = require("./auth");
 var owlScraper = require("./owlScraper.js")
+var allRoles = ['PC', 'PS', 'XBox', 'Switch'];
 
 const client = new Discord.Client();
 if(auth.token == "YOUR-TOKEN-HERE")
@@ -52,12 +53,7 @@ function sendEmoji(msg, args)
 
 function connectArgs(args)
 {
-	var argsStr = '';
-	for(i = 1; i < args.length; i++)
-		{
-			argsStr += args[i] + ' ';
-		}
-	return argsStr;
+	args.join(' ');
 }
 
 function say(msg, args)
@@ -78,18 +74,23 @@ function say(msg, args)
 
 function addRole(msg, args)
 {
-	var testRole = args[1];
+	let testRole = args[1];
 	if(testRole)
 	{
+		testRole = testRole.toLowerCase();
     for(var i = 1; i < args.length; i++)
     {
-      roleStr = args[i]
+      roleStr = args[i].toLowerCase();
       console.log(`${msg.author.username} requested the role "${roleStr}".`)
-	    var allRoles = ['PC', 'PS', 'Xbox', 'Switch'];
-		  if(allRoles.includes(roleStr))
+		  if(allRoles.map(el => el.toLowerCase()).includes(roleStr))
 		  {
-			  var member = msg.member;
-			  var role = msg.guild.roles.find('name', roleStr);
+			  let member = msg.member;
+				let role = msg.guild.roles.find(el => el.name.toLowerCase() === roleStr);				
+				if(!role)
+				{
+				  console.log(`${msg.author.username} could not be assigned that role.`);
+					return;
+				}
 			  member.addRole(role);
 			  msg.channel.send(`${msg.author}, you now have the role ${roleStr}.`);
         console.log(`${msg.author.username} was assigned the role "${roleStr}".`)
@@ -110,17 +111,22 @@ function addRole(msg, args)
 
 function rmRole(msg, args)
 {
-	var roleStr = args[1];
-	if(roleStr)
+	let testRole = args[1];
+	if(testRole)
 	{
-	  var allRoles = ['PC', 'PS', 'Xbox', 'Switch'];
-		if(allRoles.includes(roleStr))
+		testRole = testRole.toLowerCase();
+		if(allRoles.map(el => el.toLowerCase()).includes(testRole))
 		{
-			var member = msg.member;
-			var role = msg.guild.roles.find('name', roleStr);
+			let member = msg.member;
+			let role = msg.guild.roles.find(el => el.name.toLowerCase() === testRole);		
+			if(!role)
+			{
+				console.log(`${msg.author.username} could not be removed from that role.`);
+				return;
+			}
 			member.removeRole(role);
-			msg.channel.send(`${msg.author}, you no longer have the role ${roleStr}.` );
-      console.log(`${msg.author.username} was had the role "${roleStr}" removed.`)
+			msg.channel.send(`${msg.author}, you no longer have the role ${testRole}.` );
+      console.log(`${msg.author.username} was had the role "${testRole}" removed.`)
 		}
 		else
 		{
@@ -202,12 +208,12 @@ client.on('message', message => {
 //		message.react(myReactEmoji);
 //	}
   // If the message starts with !
-  if (message.toString().substring(0,1) === '!')
+  if (message.cleanContent.charAt(0) === '!')
   {
 	//split rest of the message up
-	var args = message.toString().substring(1).split(' ');
+	var args = message.cleanContent.substring(1).split(' ');
 	var cmd = args[0];	// args[1:n] stores the arguments for the commands
-    switch(cmd)
+	switch(cmd)
 	{
 		//!nathan
 		//TEST COMMAND
@@ -223,7 +229,7 @@ client.on('message', message => {
 		owlScraper.fuel(message);
 		break;
 
-    case'owl':
+		case'owl':
 		owlScraper.owl(message);
 		break;
 
@@ -238,14 +244,14 @@ client.on('message', message => {
 		//TEST COMMAND
 		//Responds with an emoji.
 		case 'emoji':
-		  sendEmoji(message, args);
+			sendEmoji(message, args);
 		break;
 
 		// !cmd
 		//Lists the available commands.
 		case 'cmd':
 		case 'help':
-               message.channel.send
+							message.channel.send
 			(
 				`Hello ${message.author}. These are some things I can do. \n`
 				+ '		!ref : *Where did Ava come from?*\n'
@@ -298,9 +304,9 @@ client.on('message', message => {
 			dance(message);
 		break;
 
-    //!highNoon
-    //In case of High Noon...
-    case 'highnoon':
+		//!highNoon
+		//In case of High Noon...
+		case 'highnoon':
 			highNoon(message, args);
 		break;
 		//Stop playing the song.
@@ -319,18 +325,18 @@ client.on('message', message => {
 			if(args[1])
 			{
 				client.user.setGame(connectArgs(args));
-        console.log(`Changed my game to ${connectArgs(args)}.`)
+				console.log(`Changed my game to ${connectArgs(args)}.`)
 			}
 			else
 			{
 				client.user.setGame(null);
-        console.log("Removed my game.")
+				console.log("Removed my game.")
 			}
 		break;
 
-    /*
-    //!off
-    //Turn the bot off.
+		/*
+		//!off
+		//Turn the bot off.
 		case 'off':
 			message.channel.send
 			(
@@ -338,7 +344,7 @@ client.on('message', message => {
 			)
 		process.exit(0);
 		break;
-    */
+		*/
 
 		//if we couldn't find the command:
 		default:
@@ -347,7 +353,7 @@ client.on('message', message => {
 				'That isn\'t a command I am familiar with.'
 			);
 		break;
-    }
+		}
   }
   else if(message.isMentioned(auth.myID))
   {
