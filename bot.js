@@ -85,7 +85,7 @@ function addRole(msg, args)
     {
       roleStr = args[i]
       console.log(`${msg.author.username} requested the role "${roleStr}".`)
-	    var allRoles = ['PC', 'PS', 'XBOX'];
+	    var allRoles = ['PC', 'PS', 'Xbox', 'Switch'];
 		  if(allRoles.includes(roleStr))
 		  {
 			  var member = msg.member;
@@ -103,7 +103,7 @@ function addRole(msg, args)
 	}
 	else
 	{
-		msg.channel.send("You need to specify a role to add; try PC, PS, or XBOX.");
+		msg.channel.send("You need to specify a role to add; try PC, PS, Xbox, or Switch.");
     console.log(`${msg.author.username} attempted to request a role, but did not specify one.`)
 	}
 }
@@ -113,7 +113,7 @@ function rmRole(msg, args)
 	var roleStr = args[1];
 	if(roleStr)
 	{
-	  var allRoles = ['PC', 'PS', 'XBOX'];
+	  var allRoles = ['PC', 'PS', 'Xbox', 'Switch'];
 		if(allRoles.includes(roleStr))
 		{
 			var member = msg.member;
@@ -130,7 +130,7 @@ function rmRole(msg, args)
 	}
 	else
 	{
-		msg.channel.send('You need to specify a role to remove; try PC, PS, or XBOX.');
+		msg.channel.send('You need to specify a role to remove; try PC, PS, Xbox, or Switch.');
     console.log(`${msg.author.username} attempted to remove a role, but did not specify one.`)
 	}
 }
