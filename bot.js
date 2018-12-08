@@ -15,6 +15,7 @@
 const Discord = require('discord.js');
 const auth = require("./auth.json");
 var owlScraper = require("./owlScraper.js")
+var allRoles = ['pc', 'ps', 'xbox', 'switch'];
 
 const client = new Discord.Client();
 if(auth.token == "YOUR-TOKEN-HERE")
@@ -76,11 +77,11 @@ function addRole(msg, args)
 	var testRole = args[1];
 	if(testRole)
 	{
+		testRole = testRole.toLowercase();
     for(var i = 1; i < args.length; i++)
     {
       roleStr = args[i]
       console.log(`${msg.author.username} requested the role "${roleStr}".`)
-	    var allRoles = ['PC', 'PS', 'Xbox', 'Switch'];
 		  if(allRoles.includes(roleStr))
 		  {
 			  var member = msg.member;
@@ -108,7 +109,6 @@ function rmRole(msg, args)
 	var roleStr = args[1];
 	if(roleStr)
 	{
-	  var allRoles = ['PC', 'PS', 'Xbox', 'Switch'];
 		if(allRoles.includes(roleStr))
 		{
 			var member = msg.member;
@@ -197,7 +197,7 @@ client.on('message', message => {
 //		message.react(myReactEmoji);
 //	}
   // If the message starts with !
-  if (message.toString().substring(0,1) === '!')
+  if (message.toString().charAt(0) === '!')
   {
 	//split rest of the message up
 	var args = message.toString().substring(1).split(' ');
