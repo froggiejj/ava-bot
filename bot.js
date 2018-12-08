@@ -52,12 +52,7 @@ function sendEmoji(msg, args)
 
 function connectArgs(args)
 {
-	var argsStr = '';
-	for(i = 1; i < args.length; i++)
-		{
-			argsStr += args[i] + ' ';
-		}
-	return argsStr;
+	args.join(' ');
 }
 
 function say(msg, args)
