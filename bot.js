@@ -85,7 +85,7 @@ function addRole(msg, args)
 		  if(allRoles.includes(roleStr))
 		  {
 			  var member = msg.member;
-			  var role = msg.guild.roles.find('name', roleStr);
+				var role = msg.guild.roles.find(el => el.name.toLowercase() === roleStr);
 			  member.addRole(role);
 			  msg.channel.send(`${msg.author}, you now have the role ${roleStr}.`);
         console.log(`${msg.author.username} was assigned the role "${roleStr}".`)
@@ -112,7 +112,7 @@ function rmRole(msg, args)
 		if(allRoles.includes(roleStr))
 		{
 			var member = msg.member;
-			var role = msg.guild.roles.find('name', roleStr);
+			var role = msg.guild.roles.find(el => el.name.toLowercase() === roleStr);
 			member.removeRole(role);
 			msg.channel.send(`${msg.author}, you no longer have the role ${roleStr}.` );
       console.log(`${msg.author.username} was had the role "${roleStr}" removed.`)
