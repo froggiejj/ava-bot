@@ -85,7 +85,7 @@ function addRole(msg, args)
 		  if(allRoles.map(el => el.toLowerCase()).includes(roleStr))
 		  {
 			  let member = msg.member;
-				let role = msg.guild.roles.find(el => el.name.toLowerCase() === roleStr);				
+				let role = msg.guild.roles.find(el => el.name.toLowerCase() === roleStr);
 				if(!role)
 				{
 				  console.log(`${msg.author.username} could not be assigned that role.`);
@@ -118,7 +118,7 @@ function rmRole(msg, args)
 		if(allRoles.map(el => el.toLowerCase()).includes(testRole))
 		{
 			let member = msg.member;
-			let role = msg.guild.roles.find(el => el.name.toLowerCase() === testRole);		
+			let role = msg.guild.roles.find(el => el.name.toLowerCase() === testRole);
 			if(!role)
 			{
 				console.log(`${msg.author.username} could not be removed from that role.`);
@@ -366,7 +366,7 @@ client.on('message', message => {
 client.on('guildMemberAdd', member => {
 	const channel = member.guild.channels.find('name', 'general');
 	// Send the message, mentioning the member
-	channel.send(`Welcome to the Saxy Beasts, ${member}\n` + 'I am here to help, type !cmd for more info.');
+	channel.send(`Oh shit, ${member} just joined The Saxy Beasts!\n` + 'I am here to help, type !cmd for more info.');
   console.log(`Welcomed ${member.username} to the server!`)
 });
 
